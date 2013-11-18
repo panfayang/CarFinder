@@ -1,3 +1,16 @@
+/**
+ * @author panfayang
+ * 
+ * This is project 3 for Kalamazoo College Mobile Computing Fall 2013 class.
+ * 
+ * This app aims to locate your car by displaying a saved location and your 
+ * current location.
+ * 
+ * This app displays your current location. If you step out of our car, you 
+ * can update the car location, so you can find it later.
+ * 
+ * This class is the main class.
+ */
 package com.example.carfinder;
 
 import android.app.Activity;
@@ -47,7 +60,6 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//		mPrefs = this.getSharedPreferences("com.example.carfinder", Context.MODE_PRIVATE);
 		mKeyCarLat = "carLocationLat";
 		mKeyCarLng = "carLocationLng";
 		mKeyCurLat = "currentLocationLat";
@@ -164,18 +176,13 @@ GooglePlayServicesClient.OnConnectionFailedListener
 
 	public void getCarLoc(View view){
 		mCurrentLocation = mLocationClient.getLastLocation();
-		double lat = mCurrentLocation.getLatitude();
-		double lng = mCurrentLocation.getLongitude();
+		double carLat = mCurrentLocation.getLatitude();
+		double carLng = mCurrentLocation.getLongitude();
 		
-		((TextView) findViewById(R.id.latitude)).setText(Double.toString(lat));
-		((TextView) findViewById(R.id.longitude)).setText(Double.toString(lng));
 
 		mPrefs = this.getSharedPreferences("com.example.carfinder", Context.MODE_PRIVATE);
-		mPrefs.edit().putString(mKeyCarLat, Double.toString(lat)).commit();
-		mPrefs.edit().putString(mKeyCarLng, Double.toString(lng)).commit();
-//
-//		CarMap carMap = new CarMap();
-//		carMap.putMarker();
+		mPrefs.edit().putString(mKeyCarLat, Double.toString(carLat)).commit();
+		mPrefs.edit().putString(mKeyCarLng, Double.toString(carLng)).commit();
 
 	}
 
@@ -188,6 +195,9 @@ GooglePlayServicesClient.OnConnectionFailedListener
 
 		mPrefs.edit().putString(mKeyCurLat, Double.toString(curLat)).commit();
 		mPrefs.edit().putString(mKeyCurLng, Double.toString(curLng)).commit();
+		
+		((TextView) findViewById(R.id.latitude)).setText(Double.toString(curLat));
+		((TextView) findViewById(R.id.longitude)).setText(Double.toString(curLng));
 
 	}
 

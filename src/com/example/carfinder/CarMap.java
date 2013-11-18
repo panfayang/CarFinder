@@ -1,3 +1,8 @@
+/**
+ * @author panfayang
+ * 
+ * This class displays map and the marker, if there is one.
+ */
 package com.example.carfinder;
 
 import android.content.Context;
@@ -53,20 +58,5 @@ public class CarMap extends FragmentActivity {
 			}
 		}
 	}
-
-
-//	public void putMarker(){
-//
-//		if (mMap!=null){
-//			double lat = Double.valueOf(mPrefs.getString(mKeyCarLat, "0"));
-//			double lng = Double.valueOf(mPrefs.getString(mKeyCarLng, "0"));
-//
-//			LatLng carLoc = new LatLng(lat,lng);
-//
-//			mMap.addMarker(new MarkerOptions()
-//			.position(carLoc)
-//			.title("Here's your car"));
-//		}
-//	}
 
 }
